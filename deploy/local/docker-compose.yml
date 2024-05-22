@@ -1,0 +1,23 @@
+version: '3.4'
+
+volumes:
+  postgres-nfc-market-data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:12.4-alpine
+    container_name: nft-market-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-nfc-market-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "POSTGRES_DB"
+      POSTGRES_USER: "POSTGRES_USER"
+      POSTGRES_PASSWORD: "POSTGRES_PASSWORD"
+  redis:
+    image: "redis:alpine"
+    container_name: nft-market-redis
+    ports:
+      - "6379:6379"
